@@ -15,11 +15,11 @@ public class TestController {
     @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("testA")
     public String textA() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return "String Cloud textA 端口号：" + port;
     }
 
