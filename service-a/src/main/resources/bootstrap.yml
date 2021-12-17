@@ -14,6 +14,13 @@ spring:
         enabled: true
         # 配置中心别名
         service-id: service-config
+# 暴露所有endpoints（热部署分布式配置）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 eureka:
   client:
     service-url:

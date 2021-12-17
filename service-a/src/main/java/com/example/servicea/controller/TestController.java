@@ -3,10 +3,16 @@ package com.example.servicea.controller;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+/**
+ * 热部署配置
+ * 刷新注解的控制器中的值才会被刷新
+ */
+@RefreshScope
 public class TestController {
     @Value("${server.port}")
     private String port;
@@ -18,11 +24,6 @@ public class TestController {
     @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("testA")
     public String textA() {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return "String Cloud textA 端口号：" + port;
     }
 
