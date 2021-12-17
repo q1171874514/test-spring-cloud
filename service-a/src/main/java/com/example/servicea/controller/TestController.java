@@ -11,6 +11,9 @@ public class TestController {
     @Value("${server.port}")
     private String port;
 
+    @Value("${name}")
+    private String name;
+
     //.在接口上配置服务保护（fallback是方法）
     @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("testA")
@@ -25,5 +28,10 @@ public class TestController {
 
     String fallback(){
         return "服务器繁忙";
+    }
+
+    @RequestMapping("hello")
+    public String hello() {
+        return name;
     }
 }
