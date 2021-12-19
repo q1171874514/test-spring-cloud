@@ -6,6 +6,7 @@ import com.netflix.zuul.exception.ZuulException;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Component
 public class TokenFilter extends ZuulFilter {
@@ -47,8 +48,13 @@ public class TokenFilter extends ZuulFilter {
         String token = request.getParameter("token");
         if (token == null) {
             currentContext.setSendZuulResponse(false);
-            currentContext.setResponseBody("token is null");
+//            currentContext.setResponseBody("token is null");
             currentContext.setResponseStatusCode(401);
+            try {
+                currentContext.getResponse().getWriter().write("token is invalid");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
