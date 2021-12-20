@@ -10,3 +10,4 @@ eureka:
     register-with-eureka: false
     #是否需要搜索服务信息 因为自己是注册中心所以为false
     fetch-registry: false
+

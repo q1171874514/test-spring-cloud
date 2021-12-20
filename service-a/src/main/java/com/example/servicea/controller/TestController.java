@@ -1,7 +1,5 @@
 package com.example.servicea.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +20,6 @@ public class TestController {
     @Value("${name}")
     private String name;
 
-    //.在接口上配置服务保护（fallback是方法）
-    @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("testA")
     public String textA() {
         return "String Cloud textA 端口号：" + port;
