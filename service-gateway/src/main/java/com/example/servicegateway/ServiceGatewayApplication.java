@@ -2,6 +2,7 @@ package com.example.servicegateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,6 +19,10 @@ import static io.netty.handler.codec.http.cookie.CookieHeaderNames.MAX_AGE;
 import static org.springframework.web.cors.CorsConfiguration.ALL;
 
 @SpringBootApplication
+/**
+ * 路由转发注解
+ */
+@EnableDiscoveryClient
 public class ServiceGatewayApplication {
 
     public static void main(String[] args) {

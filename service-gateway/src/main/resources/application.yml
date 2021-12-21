@@ -6,6 +6,9 @@ spring:
     #服务名称 - 服务之间使用名称进行通讯
     name: service-gateway
   cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
     gateway:
       discovery:
         locator:
@@ -13,13 +16,15 @@ spring:
           enabled: true
       routes:
         - id: SERVICE-OBJCAT-A
-          uri: http://localhost:8082
+          uri: lb://service-objcat-a
+#          uri: http://localhost:8082
           predicates:
             # 转发该路径
             - Path=/service-a/**
           filters:
 #            - 必须加不然没效果，好像是路径会不对
             - StripPrefix=1
+
         - id: SERVICE-OBJCAT-B
           uri: http://localhost:8083
           predicates:
@@ -28,8 +33,17 @@ spring:
           filters:
 #            - 必须加不然没效果，好像是路径会不对
             - StripPrefix=1
+
 eureka:
   client:
     service-url:
       #填写注册中心服务器地址
       defaultZone: http://localhost:8081/eureka
+#load-balanced-service:
+#  ribbon:
+#    # 负载地址
+#    listOfServers: http://localhost:8082, http://localhost:8089
+#    # 负载轮询策略
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+#    # 健康检查
+#    NFLoadBalancerPingClassName: com.modules.scistor.config.HealthExamination
