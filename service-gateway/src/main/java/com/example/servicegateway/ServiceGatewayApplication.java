@@ -3,6 +3,7 @@ package com.example.servicegateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -23,6 +24,7 @@ import static org.springframework.web.cors.CorsConfiguration.ALL;
  * 路由转发注解
  */
 @EnableDiscoveryClient
+
 public class ServiceGatewayApplication {
 
     public static void main(String[] args) {

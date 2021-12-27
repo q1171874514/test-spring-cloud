@@ -8,11 +8,11 @@ spring:
   cloud:
 #    nacos:
 #      discovery:
-#        server-addr: localhost:8848
+#        server-addr: localhost:8847
     gateway:
       discovery:
         locator:
-          # 是否和服务注册与发现组件结合，设置为 true 后可以直接使用应用名称调用服务
+          # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
           enabled: true
       routes:
         - id: SERVICE-OBJCAT-A
@@ -39,11 +39,12 @@ eureka:
     service-url:
       #填写注册中心服务器地址
       defaultZone: http://localhost:8081/eureka
-#load-balanced-service:
-#  ribbon:
-#    # 负载地址
-#    listOfServers: http://localhost:8082, http://localhost:8089
-#    # 负载轮询策略
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
-#    # 健康检查
-#    NFLoadBalancerPingClassName: com.modules.scistor.config.HealthExamination
+# 负载均衡
+load-balanced-service:
+  ribbon:
+    # 负载地址
+    listOfServers: http://localhost:8082, http://localhost:8089
+    # 负载轮询策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    # 健康检查
+    NFLoadBalancerPingClassName: com.modules.scistor.config.HealthExamination
